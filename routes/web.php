@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Wedding;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Wedding\Create as WeddingCreate;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/wedding/create', WeddingCreate::class)->name('wedding.create');
 
 require __DIR__.'/auth.php';
