@@ -16,20 +16,22 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($weddings as $wedding)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    @forelse ($weddings as $wedding)
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $wedding->title }}
                     </th>
                     <td class="px-6 py-4 text-right">
                         {{ __('Options') }}
                     </td>
-                    @empty
+                </tr>
+                @empty
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td colspan="2" class="h-200 text-center">
                         <p>{{ __('No records found') }}</p>
                     </td>
-                    @endforelse
                 </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

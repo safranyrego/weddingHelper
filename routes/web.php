@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Wedding;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Wedding\Create as WeddingCreate;
 
