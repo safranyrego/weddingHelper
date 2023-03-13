@@ -19,6 +19,9 @@ class Wedding extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'planned_from',
+        'planned_to',
+        'final',
     ];
 
     /**
