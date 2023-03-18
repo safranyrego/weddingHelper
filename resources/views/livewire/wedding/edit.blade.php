@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Create Wedding') }}
+        {{ __('Edit :title Wedding', ['title' => $this->wedding->title]) }}
     </h2>
 </x-slot>
 
@@ -13,7 +13,7 @@
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                             {{ __('Wedding Details') }}
                         </h2>
-                
+
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                             {{ __("Provide your wedding's details.") }}
                         </p>

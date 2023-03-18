@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Wedding;
 
 use App\Models\Wedding;
+use Carbon\Carbon;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -10,10 +11,12 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Livewire\Component;
 
-class Create extends Component implements HasForms
+class Edit extends Component implements HasForms
 {
     use InteractsWithForms;
 
+    public $wedding_id;
+    public Wedding $wedding;
     public string $title = '';
     public string $planned_from = '';
     public string $planned_to = '';
@@ -26,6 +29,19 @@ class Create extends Component implements HasForms
         'planned_to' => 'date',
         'final' => 'date',
     ];
+
+    public function mount(): void 
+    {
+        $this->wedding = Wedding::findOrFail($this->wedding_id);
+
+        $this->not_sure = $this->wedding->final ? false : true;
+        $this->form->fill([
+            'title' => $this->wedding->title,
+            'planned_from' => $this->wedding->planned_from ? Carbon::parse($this->wedding->planned_from)->format('Y-m-d') : '',
+            'planned_to' => $this->wedding->planned_to ? Carbon::parse($this->wedding->planned_to)->format('Y-m-d') : '',
+            'final' => $this->wedding->final ? Carbon::parse($this->wedding->final)->format('Y-m-d') : '',
+        ]);
+    }
 
     protected function getFormSchema(): array 
     {
@@ -50,17 +66,17 @@ class Create extends Component implements HasForms
                 ->reactive(),
         ];
     }
-
+    
     public function submit()
     {
         $this->validate();
 
-        Wedding::create(
+        $this->wedding->update(
             array_merge(['user_id' => auth()->id()], 
             $this->form->getState())
         );
 
-        Notification::make() 
+        Notification::make()
             ->title('Saved successfully')
             ->success()
             ->send(); 
@@ -70,6 +86,6 @@ class Create extends Component implements HasForms
 
     public function render()
     {
-        return view('livewire.wedding.create');
+        return view('livewire.wedding.edit');
     }
 }

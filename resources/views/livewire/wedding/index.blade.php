@@ -21,8 +21,13 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $wedding->title }}
                     </th>
-                    <td class="px-6 py-4 text-right">
-                        {{ __('Options') }}
+                    <td class="flex justify-end gap-3 px-6 py-4 text-right">
+                        <a href="{{ route('wedding.edit', ['wedding_id' => $wedding->id]) }}" class="text-amber-500 font-bold">
+                            {{ __('Edit') }}
+                        </a>
+                        <button type="button" wire:click.prevent="delete({{ $wedding->id }})" class="text-red-500 font-bold">
+                            {{ __('Delete') }}
+                        </button>
                     </td>
                 </tr>
                 @empty
