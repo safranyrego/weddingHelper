@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Wedding\Create as WeddingCreate;
+use App\Http\Livewire\Wedding\Show as WeddingShow;
 use App\Http\Livewire\Wedding\Edit as WeddingEdit;
 
 /*
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/wedding/create', WeddingCreate::class)->name('wedding.create');
-Route::get('/wedding/{wedding_id}', WeddingEdit::class)->name('wedding.edit');
+Route::get('/wedding/{wedding_id}', WeddingShow::class)->name('wedding.show');
+Route::get('/wedding/{wedding_id}/edit', WeddingEdit::class)->name('wedding.edit');
 
 require __DIR__.'/auth.php';

@@ -68,6 +68,11 @@ class Create extends Component implements HasForms
         return redirect(route('dashboard'));
     }
 
+    public function cancel()
+    {
+        return redirect(route('dashboard'));
+    }
+
     public function render()
     {
         return view('livewire.wedding.create');

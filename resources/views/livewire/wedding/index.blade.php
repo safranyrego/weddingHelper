@@ -19,7 +19,9 @@
                 @forelse ($weddings as $wedding)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $wedding->title }}
+                        <a href="{{ route('wedding.show', ['wedding_id' => $wedding->id]) }}" class="text-black dark:text-white">
+                            {{ $wedding->title }}
+                        </a>
                     </th>
                     <td class="flex justify-end gap-3 px-6 py-4 text-right">
                         <a href="{{ route('wedding.edit', ['wedding_id' => $wedding->id]) }}" class="text-amber-500 font-bold">
