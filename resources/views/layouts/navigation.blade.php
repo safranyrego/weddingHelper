@@ -15,6 +15,30 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(request()->wedding_id)
+                        <x-nav-link
+                            :href="route('wedding.show', ['wedding_id' => request()->wedding_id])" 
+                            :active="request()->routeIs('wedding.show')"
+                        >
+                            {{ __('Overview') }}
+                        </x-nav-link>
+                    @endif
+                    @if(request()->wedding_id)
+                        <x-nav-link
+                            :href="route('planning.index', ['wedding_id' => request()->wedding_id])" 
+                            :active="request()->routeIs('planning.index')"
+                        >
+                            {{ __('Planning') }}
+                        </x-nav-link>
+                    @endif
+                    @if(request()->wedding_id)
+                        <x-nav-link
+                            :href="route('seating.index',  ['wedding_id' => request()->wedding_id])" 
+                            :active="request()->routeIs('seating.index')"
+                        >
+                            {{ __('Seating') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

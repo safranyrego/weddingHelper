@@ -28,10 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-Route::get('/wedding/create', WeddingCreate::class)->name('wedding.create');
-Route::get('/wedding/{wedding_id}', WeddingShow::class)->name('wedding.show');
-Route::get('/wedding/{wedding_id}/edit', WeddingEdit::class)->name('wedding.edit');
+    Route::get('/wedding/create', WeddingCreate::class)->name('wedding.create');
+    Route::get('/wedding/{wedding_id}', WeddingShow::class)->name('wedding.show');
+    Route::get('/wedding/{wedding_id}/edit', WeddingEdit::class)->name('wedding.edit');
+
+    Route::prefix('/wedding/{wedding_id}')->group(function () {
+        Route::get('/planning', WeddingShow::class)->name('planning.index');
+        Route::get('/seating', WeddingShow::class)->name('seating.index');
+    });
+});
 
 require __DIR__.'/auth.php';
