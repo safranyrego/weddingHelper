@@ -25,6 +25,14 @@
                     @endif
                     @if(request()->wedding_id)
                         <x-nav-link
+                            :href="route('idea.index', ['wedding_id' => request()->wedding_id])" 
+                            :active="request()->routeIs('idea.index')"
+                        >
+                            {{ __('Ideas') }}
+                        </x-nav-link>
+                    @endif
+                    @if(request()->wedding_id)
+                        <x-nav-link
                             :href="route('planning.index', ['wedding_id' => request()->wedding_id])" 
                             :active="request()->routeIs('planning.index')"
                         >

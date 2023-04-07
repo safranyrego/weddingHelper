@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Wedding\Create as WeddingCreate;
 use App\Http\Livewire\Wedding\Show as WeddingShow;
 use App\Http\Livewire\Wedding\Edit as WeddingEdit;
+use App\Http\Livewire\Idea\Index as IdeaIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/wedding/{wedding_id}/edit', WeddingEdit::class)->name('wedding.edit');
 
     Route::prefix('/wedding/{wedding_id}')->group(function () {
+        Route::get('/ideas', IdeaIndex::class)->name('idea.index');
         Route::get('/planning', WeddingShow::class)->name('planning.index');
         Route::get('/seating', WeddingShow::class)->name('seating.index');
     });
