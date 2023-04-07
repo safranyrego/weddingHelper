@@ -62,6 +62,12 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @if(auth()->user()->canAccessFilament())
+                            <x-dropdown-link :href="route('filament.pages.dashboard')">
+                                {{ __('Administration') }}
+                            </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
