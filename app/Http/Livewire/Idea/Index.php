@@ -13,15 +13,18 @@ class Index extends Component implements HasForms
     use InteractsWithForms;
     
     public $wedding_id;
-    public Wedding $wedding;
-
-    public array $ideaSearch = [];
+    protected Wedding $wedding;
 
     public $search;
+    protected array $ideaSearch = [];
+
+    protected $favorite;
+    protected $favoriteIdeas = [];
 
     public function mount(): void 
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->getFavoriteIdeas();
     }
 
     protected function getFormSchema(): array 
@@ -35,9 +38,22 @@ class Index extends Component implements HasForms
 
     public function search()
     {
-        $response = json_decode(file_get_contents('https://api.unsplash.com//search/photos/?query=' . $this->search . '&per_page=20&client_id=zcq8N3EXKZW1fylcZzi_gknCVUP2bVWZPLPCk7bocwQ'));
-        if($response->results){
-            $this->ideaSearch = $response->results;
+        if(!empty($this->search)){
+            $response = json_decode(file_get_contents('https://api.unsplash.com//search/photos/?query=' . $this->search . '&per_page=20&client_id=zcq8N3EXKZW1fylcZzi_gknCVUP2bVWZPLPCk7bocwQ'));
+            if($response->results){
+                $this->ideaSearch = $response->results;
+                $this->favorite = false;
+            }
+        } else {
+            $this->getFavoriteIdeas();
+        }
+    }
+
+    public function getFavoriteIdeas()
+    {
+        $this->favoriteIdeas = auth()->user()->ideas;
+        if(count($this->favoriteIdeas)){
+            $this->favorite = true;
         }
     }
 

@@ -47,6 +47,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Wedding::class);
     }
 
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
+
     public function canAccessFilament(): bool
     {
         return true;

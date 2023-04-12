@@ -1,8 +1,8 @@
-{{-- <x-slot name="header">
+<x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ $wedding->title }}
+        {{ __('Ideas') }}
     </h2>
-</x-slot> --}}
+</x-slot>
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -21,12 +21,35 @@
                 </form>
             </section>
         </div>
+        @if ($this->favorite)
+        <p class="text-4xl text-center text-gray-700 dark:text-gray-300">
+            {{ __('Your favorite ideas') }}
+        </p>
         <div class="grid grid-cols-4 gap-1.5">
-            @foreach ($this->ideaSearch as $idea)
+            @foreach ($this->favoriteIdeas as $idea)
                 <div>
-                    <img class="aspect-square object-cover" src="{{ $idea->urls->small_s3 }}" alt="{{ $idea->alt_description }}">
+                    <img
+                        wire:click="$emit('openModal', 'idea.show', {{ json_encode(['idea' => $idea->id]) }})"
+                        class="aspect-square object-cover cursor-pointer"
+                        src="{{ $idea->urls['small'] }}"
+                        alt="{{ $idea->alt }}"
+                    >
                 </div>
             @endforeach
         </div>
+        @else
+        <div class="grid grid-cols-4 gap-1.5">
+            @foreach ($this->ideaSearch as $idea)
+                <div>
+                    <img 
+                        wire:click="$emit('openModal', 'idea.show', {{ json_encode(['idea' => $idea->id]) }})"
+                        class="aspect-square object-cover cursor-pointer"
+                        src="{{ $idea->urls->small }}"
+                        alt="{{ $idea->alt_description }}"
+                    >
+                </div>
+            @endforeach
+        </div>
+        @endif
     </div>
 </div>
