@@ -10,7 +10,7 @@
             <section>
                 <form wire:submit.prevent="search" class="mt-6 space-y-6">
                     <h1 class="text-7xl text-center text-gray-700 dark:text-gray-300">
-                        {{ __('Search for ideas!🧠🐱👌') }}
+                        {{ __('Search for ideas! 🧠🐱👌') }}
                     </h1>
                     {{ $this->form }}
                     <div class="flex justify-center gap-4">
@@ -27,27 +27,13 @@
         </p>
         <div class="grid grid-cols-4 gap-1.5">
             @foreach ($this->favoriteIdeas as $idea)
-                <div>
-                    <img
-                        wire:click="$emit('openModal', 'idea.show', {{ json_encode(['idea' => $idea->id]) }})"
-                        class="aspect-square object-cover cursor-pointer"
-                        src="{{ $idea->urls['small'] }}"
-                        alt="{{ $idea->alt }}"
-                    >
-                </div>
+            <x-idea-preview :idea="$idea"/>
             @endforeach
         </div>
         @else
         <div class="grid grid-cols-4 gap-1.5">
             @foreach ($this->ideaSearch as $idea)
-                <div>
-                    <img 
-                        wire:click="$emit('openModal', 'idea.show', {{ json_encode(['idea' => $idea->id]) }})"
-                        class="aspect-square object-cover cursor-pointer"
-                        src="{{ $idea->urls->small }}"
-                        alt="{{ $idea->alt_description }}"
-                    >
-                </div>
+            <x-idea-preview :idea="$idea"/>
             @endforeach
         </div>
         @endif

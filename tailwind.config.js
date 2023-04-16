@@ -29,6 +29,11 @@ module.exports = {
             height: {
                 200: '200px',
             },
+            maxWidth: {
+                500: '500px',
+                992: '992px',
+                1440: '1440px',
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
@@ -38,8 +43,14 @@ module.exports = {
                 success: colors.green,
                 warning: colors.yellow,
             },
-        },
+        }
     },
+
+    safelist: [
+        'sm:max-w-500',
+        'md:max-w-992',
+        'lg:max-w-1440',
+    ],
 
     plugins: [require('@tailwindcss/forms')],
 };

@@ -17,7 +17,7 @@ class Idea extends Model
     protected $fillable = [
         'user_id',
         'unsplash_id',
-        'url',
+        'urls',
         'alt',
     ];
 
