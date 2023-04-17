@@ -32,6 +32,7 @@ module.exports = {
             maxWidth: {
                 500: '500px',
                 992: '992px',
+                1080: '1080px',
                 1440: '1440px',
             },
             fontFamily: {
@@ -49,7 +50,7 @@ module.exports = {
     safelist: [
         'sm:max-w-500',
         'md:max-w-992',
-        'lg:max-w-1440',
+        'lg:max-w-1080',
     ],
 
     plugins: [require('@tailwindcss/forms')],

@@ -1,5 +1,5 @@
 <div class="p-2 sm:p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-    <img src="{{ $idea['urls']['full'] }}" alt="{{ $idea['alt'] }}">
+    <img class="m-auto max-h-custom-picture" src="{{ $idea['urls']['regular'] }}" alt="{{ $idea['alt'] }}">
     <div class="flex justify-between gap-4 pt-4">
         @if ($this->isFavorite())
         <x-primary-button wire:click="unfavorite()">

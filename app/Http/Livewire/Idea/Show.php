@@ -15,7 +15,7 @@ class Show extends ModalComponent
     public array $idea;
 
     protected static array $maxWidths = [
-        '2xl' => 'sm:max-w-500 md:max-w-992 lg:max-w-1440',
+        '2xl' => 'sm:max-w-500 md:max-w-992 lg:max-w-1080',
     ];
 
     public function favorite()
@@ -38,6 +38,7 @@ class Show extends ModalComponent
         ])->get();
 
         foreach ($favoriteIdeas as $idea) {
+            $this->emit('unfavorite', $idea);
             $idea->delete();
         }
 
