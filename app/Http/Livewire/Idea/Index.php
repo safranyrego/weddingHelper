@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class Index extends Component implements HasForms
 {
     use InteractsWithForms;
-    
+
     public $wedding_id;
     protected Wedding $wedding;
 
