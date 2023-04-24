@@ -17,6 +17,7 @@ class Item extends Model
      */
     protected $fillable = [
         'budget_id',
+        'title',
         'value',
     ];
 

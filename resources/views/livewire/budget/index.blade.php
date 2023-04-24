@@ -12,9 +12,11 @@
                     {{ __('Remaining Budget:') }}
                 </h1>
                 <p class="text-7xl text-center text-gray-700 dark:text-gray-300">
-                    {{ prettyMoney($this->wedding->remainingBudget) }}
+                    {{-- {{ prettyMoney($this->wedding->remainingBudget) }} --}} 2000000
                 </p>
-                {{ $this->table }}
+                <div class="mt-7">
+                    {{ $this->table }}
+                </div>
             </section>
         </div>
     </div>

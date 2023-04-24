@@ -54,6 +54,6 @@ class Wedding extends Model
 
     public function budgetItemsQuery(): Builder
     {
-        return Item::where('budget_id', $this->budget->id);
+        return Item::query()->where('budget_id', $this->budget->id);
     }
 }
