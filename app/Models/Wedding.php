@@ -49,7 +49,7 @@ class Wedding extends Model
 
     public function remainingBudget(): Attribute
     {
-        return Attribute::make(get: fn () => 20000000);
+        return Attribute::make(get: fn () => $this->budget->remainingBudget());
     }
 
     public function budgetItemsQuery(): Builder

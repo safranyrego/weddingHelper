@@ -2,11 +2,8 @@
 
 namespace App\Http\Livewire\Budget;
 
-use App\Models\Item;
 use App\Models\Wedding;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Pages\Concerns\UsesResourceForm;
-use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -22,11 +19,29 @@ class Index extends Component implements HasTable
     public $wedding_id;
     public Wedding $wedding;
 
+    public $editBudgetMode = false;
+    public $currentBudget;
+
     protected $listeners = ['closeModal' => '$refresh'];
 
     public function mount(): void 
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->currentBudget = $this->wedding->budget->value;
+    }
+
+    public function editBudget()
+    {
+        $this->wedding->budget->update([
+            'value' => $this->currentBudget
+        ]);
+
+        $this->toggleEditBudgetMode();
+    }
+
+    public function toggleEditBudgetMode()
+    {
+        $this->editBudgetMode = ! $this->editBudgetMode;
     }
 
     protected function getTableQuery(): Builder

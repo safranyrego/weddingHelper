@@ -40,4 +40,9 @@ class Budget extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function remainingBudget()
+    {
+        return $this->value - $this->items->sum('value');
+    }
 }
