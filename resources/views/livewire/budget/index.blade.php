@@ -12,10 +12,15 @@
                     {{ __('Remaining Budget:') }}
                 </h1>
                 <p class="text-7xl text-center text-gray-700 dark:text-gray-300">
-                    {{-- {{ prettyMoney($this->wedding->remainingBudget) }} --}} 2000000
+                    {{ prettyMoney($this->wedding->remainingBudget) }}
                 </p>
                 <div class="mt-7">
                     {{ $this->table }}
+                </div>
+                <div class="flex justify-center mt-6">
+                    <x-primary-button wire:click="$emit('openModal', 'item.create')">
+                        {{ __('ADD Item') }}
+                    </x-primary-button>
                 </div>
             </section>
         </div>
