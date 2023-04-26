@@ -20,8 +20,11 @@
                     </div>
                     @else
                     <div class="flex-1 flex items-end justify-center">
-                        <form wire:submit.prevent="editBudget" class="flex ">
-                            <x-text-input type="number" wire:model="currentBudget" class="text-4xl text-center text-gray-700 dark:text-gray-300" />
+                        <form wire:submit.prevent="editBudget" class="flex content-center">
+                            <x-text-input type="number" wire:model="currentBudget" class="text-4xl text-center text-gray-700 dark:text-gray-300 appearance-none m-0" />
+                            <div class="flex">
+                                <x-primary-button class="ml-3">{{ __('Save') }}</x-primary-button>
+                            </div>
                         </form>
                     </div>
                     @endif
@@ -39,7 +42,7 @@
                 </div>
                 <div class="flex justify-center mt-6">
                     <x-primary-button wire:click="$emit('openModal', 'item.create')">
-                        {{ __('ADD Item') }}
+                        {{ __('Add Item') }}
                     </x-primary-button>
                 </div>
             </section>
