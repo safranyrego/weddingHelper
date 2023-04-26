@@ -25,8 +25,8 @@
                     @endif
                     @if(request()->wedding_id)
                         <x-nav-link
-                            :href="route('planning.index', ['wedding_id' => request()->wedding_id])" 
-                            :active="request()->routeIs('planning.index')"
+                            :href="route('todo.index', ['wedding_id' => request()->wedding_id])" 
+                            :active="request()->routeIs('todo.index')"
                         >
                             {{ __('Planning') }}
                         </x-nav-link>

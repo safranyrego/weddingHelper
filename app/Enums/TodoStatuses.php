@@ -20,6 +20,17 @@ enum TodoStatuses: string
         return $values;
     }
 
+    public static function selectValues()
+    {
+        $values = [];
+
+        foreach (self::cases() as $case){
+            $values[$case->value] = ucfirst($case->value);
+        }
+
+        return $values;
+    }
+
     public static function nextStep($status)
     {
         return match ($status){

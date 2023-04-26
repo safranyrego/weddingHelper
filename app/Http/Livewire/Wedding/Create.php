@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Wedding;
 
+use App\Models\Budget;
+use App\Models\Todo;
 use App\Models\Wedding;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -55,10 +57,16 @@ class Create extends Component implements HasForms
     {
         $this->validate();
 
-        Wedding::create(
+        $wedding = Wedding::create(
             array_merge(['user_id' => auth()->id()], 
             $this->form->getState())
         );
+
+        Todo::createTodoListForNewWedding($wedding->id);
+        Budget::create([
+            'wedding_id' => $wedding->id,
+            'value' => 0,
+        ]);
 
         Notification::make() 
             ->title('Saved successfully')
