@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class IdeaPreview extends Component
 {
     public ?Idea $idea;
+    public $opensPreview = true;
 
     public function __construct(object $idea) {
         $this->idea = Idea::findOr($idea->id, function () use ($idea) {

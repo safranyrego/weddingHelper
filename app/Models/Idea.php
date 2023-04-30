@@ -15,7 +15,7 @@ class Idea extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
+        'wedding_id',
         'unsplash_id',
         'urls',
         'alt',
@@ -30,8 +30,8 @@ class Idea extends Model
         'urls' => 'array',
     ];
 
-    public function user()
+    public function wedding()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Wedding::class);
     }
 }

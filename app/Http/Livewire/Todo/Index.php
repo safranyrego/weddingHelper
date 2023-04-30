@@ -4,9 +4,10 @@ namespace App\Http\Livewire\Todo;
 
 use App\Enums\TodoStatuses;
 use App\Models\Todo;
+use Filament\Forms\Components\Concerns\HasActions;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Table;
+use Filament\Pages\Actions\CreateAction;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -19,7 +20,15 @@ use Livewire\Component;
 
 class Index extends Component implements HasTable
 {
-    use InteractsWithTable;
+    use InteractsWithTable, HasActions;
+
+    protected function getActions(): array
+    {
+        dd('here');
+        return [
+            CreateAction::make()
+        ];
+    }
 
     protected function getTableQuery()
     {

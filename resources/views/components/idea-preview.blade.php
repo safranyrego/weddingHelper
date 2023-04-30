@@ -1,7 +1,9 @@
 <div>
     <img
-        wire:click="$emit('openModal', 'idea.show', {{ json_encode(['idea' => $idea]) }})"
-        class="aspect-square object-cover cursor-pointer"
+        @if ($opensPreview)
+            wire:click="$emit('openModal', 'idea.show', {{ json_encode(['idea' => $idea, 'wedding_id' => $this->wedding_id]) }})"
+        @endif
+        class="aspect-square object-cover {{ $opensPreview ? 'cursor-pointer' : ''}}"
         src="{{ $idea->urls['small'] }}"
         alt="{{ $idea->alt }}"
     >

@@ -14,7 +14,7 @@ class Index extends Component implements HasForms
     use InteractsWithForms;
 
     public $wedding_id;
-    protected Wedding $wedding;
+    public Wedding $wedding;
 
     public $search;
     protected array $ideaSearch = [];
@@ -63,8 +63,8 @@ class Index extends Component implements HasForms
 
     public function getFavoriteIdeas()
     {
-        $this->favoriteIdeas = auth()->user()->ideas;
-        if(count($this->favoriteIdeas)){
+        $this->favoriteIdeas = $this->wedding->ideas;
+        if($this->favoriteIdeas && count($this->favoriteIdeas)){
             $this->favorite = true;
         }
     }

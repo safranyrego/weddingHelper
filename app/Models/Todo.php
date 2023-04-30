@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\TodoStatuses;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
@@ -33,6 +34,16 @@ class Todo extends Model implements Sortable
     protected $casts = [
         'status' => TodoStatuses::class
     ];
+
+    /**
+     * Wedding - Todo BelongsTo relation
+     *
+     * @return BelongsTo
+     */
+    public function wedding(): BelongsTo
+    {
+        return $this->belongsTo(Wedding::class);
+    }
 
     public function setStatus($status)
     {

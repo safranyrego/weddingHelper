@@ -3,13 +3,19 @@
 namespace App\Http\Livewire\Wedding;
 
 use App\Models\Wedding;
+use Closure;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 use Livewire\Component;
 
-class Index extends Component
+class Index extends Component implements HasTable
 {
-    public $weddings;
+    use InteractsWithTable;
 
     protected $listeners = ['undoDelete'];
 
@@ -18,9 +24,31 @@ class Index extends Component
         return redirect()->to(route('wedding.create'));
     }
 
-    public function mount()
+    public function getTableQuery()
     {
-        $this->weddings = auth()->user()->weddings;
+        return auth()->user()->weddingsQuery();
+    }
+
+    protected function getTableColumns(): array 
+    {
+        return [
+            TextColumn::make('title')
+                ->sortable(),
+        ];
+    }
+
+    protected function getTableActions(): array
+    {
+        return [
+            EditAction::make()
+                ->url(fn (Wedding $record): string => route('wedding.edit', $record)),
+            DeleteAction::make(),
+        ];
+    }
+
+    protected function getTableRecordUrlUsing(): ?Closure
+    {
+        return fn (Wedding $record): string => route('wedding.show', $record);
     }
 
     public function delete($id)

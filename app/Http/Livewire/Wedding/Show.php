@@ -10,10 +10,12 @@ class Show extends Component
 {
     public $wedding_id;
     public Wedding $wedding;
+    public $ideas;
 
     public function mount(): void 
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->ideas = $this->wedding->ideas->random(($this->wedding->ideas->count() >= 4 ? 4 : $this->wedding->ideas->count()));
     }
 
     public function remaining()

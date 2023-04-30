@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,9 +48,9 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Wedding::class);
     }
 
-    public function ideas()
+    public function weddingsQuery(): Builder
     {
-        return $this->hasMany(Idea::class);
+        return Wedding::query()->where('user_id', $this->id);
     }
 
     public function canAccessFilament(): bool
