@@ -6,6 +6,7 @@ use App\Models\Wedding;
 use Closure;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -34,6 +35,15 @@ class Index extends Component implements HasTable
         return [
             TextColumn::make('title')
                 ->sortable(),
+        ];
+    }
+
+    protected function getTableHeaderActions(): array
+    {
+        return [
+            CreateAction::make('create')
+                ->label(__('Create Wedding'))
+                ->url(route('wedding.create'))
         ];
     }
 

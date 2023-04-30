@@ -19,17 +19,13 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Beni',
             'email' => 'beni@weddinghelper.test',
-            'email_verified_at' => now(),
             'password' => Hash::make('password')
         ]);
         
         User::create([
             'name' => 'Regő',
             'email' => 'rego@weddinghelper.test',
-            'email_verified_at' => now(),
             'password' => Hash::make('password')
         ]);
-
-        User::factory(10)->create();
     }
 }

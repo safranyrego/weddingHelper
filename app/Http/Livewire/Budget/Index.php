@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Budget;
 
 use App\Models\Wedding;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -49,6 +50,26 @@ class Index extends Component implements HasTable
         return $this->wedding->budgetItemsQuery();
     }
 
+    protected function getTableHeaderActions(): array
+    {
+        return [
+            CreateAction::make('create')
+                ->label(__('Create Todo'))
+                ->form([
+                    TextInput::make('title')
+                        ->required(),
+                    TextInput::make('value')
+                        ->required()
+                        ->integer()
+                        ->minValue(0),
+                ])
+                ->mutateFormDataUsing(function (array $data): array {
+                    $data['budget_id'] = $this->wedding->budget->id;
+                    return $data;
+                })
+        ];
+    }
+
     protected function getTableColumns(): array 
     {
         return [
@@ -66,8 +87,12 @@ class Index extends Component implements HasTable
         return [
             EditAction::make()
                 ->form([
-                    TextInput::make('title')->required(),
-                    TextInput::make('value')->required(),
+                    TextInput::make('title')
+                        ->required(),
+                    TextInput::make('value')
+                        ->required()
+                        ->integer()
+                        ->minValue(0),
                 ]),
             DeleteAction::make(),
         ];

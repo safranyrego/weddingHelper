@@ -15,6 +15,7 @@ class Create extends ModalComponent implements HasForms
 
     public $title;
     public $value;
+    public $budget_id;
 
     protected $rules = [
         'title' => 'required|min:3|max:255',
@@ -27,7 +28,7 @@ class Create extends ModalComponent implements HasForms
         
         Item::create(
             array_merge(
-                ['budget_id' => 1],
+                ['budget_id' => $this->budget_id],
                 $this->form->getState()
             )
         );

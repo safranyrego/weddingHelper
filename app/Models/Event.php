@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Idea extends Model
+class Event extends Model
 {
     use HasFactory;
 
@@ -17,26 +17,16 @@ class Idea extends Model
      */
     protected $fillable = [
         'wedding_id',
-        'unsplash_id',
-        'urls',
-        'alt',
+        'title',
+        'starts_at',
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'urls' => 'array',
-    ];
-
-    /**
-     * Wedding - Idea BelongsTo relation
+     * Wedding - Event BelongsTo relation
      *
      * @return BelongsTo
      */
-    public function wedding(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(Wedding::class);
     }

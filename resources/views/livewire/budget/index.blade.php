@@ -5,7 +5,7 @@
 </x-slot>
 
 <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-4 sm:p-8">
             <section>
                 <div class="flex">
@@ -23,7 +23,9 @@
                         <form wire:submit.prevent="editBudget" class="flex content-center">
                             <x-text-input type="number" wire:model="currentBudget" class="text-4xl text-center text-gray-700 dark:text-gray-300 appearance-none m-0" />
                             <div class="flex">
-                                <x-primary-button class="ml-3">{{ __('Save') }}</x-primary-button>
+                                <x-primary-button class="ml-3">
+                                    {{ __('Save') }}
+                                </x-primary-button>
                             </div>
                         </form>
                     </div>
@@ -37,11 +39,11 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-7">
+                <div class="mt-7 [&_.filament-tables-header-container>div:first-child]:hidden">
                     {{ $this->table }}
                 </div>
                 <div class="flex justify-center mt-6">
-                    <x-primary-button wire:click="$emit('openModal', 'item.create')">
+                    <x-primary-button wire:click="mountTableAction('create')">
                         {{ __('Add Item') }}
                     </x-primary-button>
                 </div>

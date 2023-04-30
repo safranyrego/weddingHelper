@@ -70,6 +70,16 @@ class Wedding extends Model
         return $this->hasMany(Todo::class);
     }
 
+    /**
+     * Wedding - Event HasMany relation
+     *
+     * @return HasMany
+     */
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function remainingBudget(): Attribute
     {
         return Attribute::make(get: fn () => $this->budget->remainingBudget());
@@ -78,6 +88,11 @@ class Wedding extends Model
     public function budgetItemsQuery(): Builder
     {
         return Item::query()->where('budget_id', $this->budget->id);
+    }
+
+    public function todosQuery(): Builder
+    {
+        return Todo::query()->where('wedding_id', $this->id);
     }
 
     public function todoStatusGrouped()

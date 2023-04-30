@@ -49,10 +49,10 @@
                     @endif
                     @if(request()->wedding_id)
                         <x-nav-link
-                            :href="route('seating.index',  ['wedding_id' => request()->wedding_id])" 
-                            :active="request()->routeIs('seating.index')"
+                            :href="route('event.index',  ['wedding_id' => request()->wedding_id])" 
+                            :active="request()->routeIs('event.index')"
                         >
-                            {{ __('Seating') }}
+                            {{ __('The Big Day') }}
                         </x-nav-link>
                     @endif
                 </div>

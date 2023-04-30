@@ -4,11 +4,11 @@ namespace App\Http\Livewire\Todo;
 
 use App\Enums\TodoStatuses;
 use App\Models\Todo;
-use Filament\Forms\Components\Concerns\HasActions;
+use App\Models\Wedding;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Pages\Actions\CreateAction;
 use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\BadgeColumn;
@@ -20,19 +20,19 @@ use Livewire\Component;
 
 class Index extends Component implements HasTable
 {
-    use InteractsWithTable, HasActions;
+    use InteractsWithTable;
 
-    protected function getActions(): array
+    public $wedding_id;
+    public Wedding $wedding;
+
+    public function mount(): void 
     {
-        dd('here');
-        return [
-            CreateAction::make()
-        ];
+        $this->wedding = Wedding::findOrFail($this->wedding_id);
     }
 
     protected function getTableQuery()
     {
-        return Todo::query()->orderBy('order');
+        return $this->wedding->todosQuery()->orderBy('order');
     }
 
     public function getDefaultSortColumn(): ?string
@@ -43,6 +43,26 @@ class Index extends Component implements HasTable
     protected function getTableReorderColumn()
     {
         return 'order';
+    }
+
+    protected function getTableHeaderActions(): array
+    {
+        return [
+            CreateAction::make('create')
+                ->label(__('Create Todo'))
+                ->form([
+                    TextInput::make('title')
+                        ->required(),
+                    Select::make('status')
+                        ->options(TodoStatuses::selectValues())
+                        ->default(TodoStatuses::TODO->value)
+                        ->disablePlaceholderSelection(),
+                ])
+                ->mutateFormDataUsing(function (array $data): array {
+                    $data['wedding_id'] = $this->wedding_id;
+                    return $data;
+                })
+        ];
     }
 
     protected function getTableColumns(): array 
@@ -69,7 +89,8 @@ class Index extends Component implements HasTable
         return [
             EditAction::make()
                 ->form([
-                    TextInput::make('title')->required(),
+                    TextInput::make('title')
+                        ->required(),
                     Select::make('status')
                         ->options(TodoStatuses::selectValues())
                         ->default(TodoStatuses::TODO->value)

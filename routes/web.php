@@ -9,6 +9,7 @@ use App\Http\Livewire\Wedding\Edit as WeddingEdit;
 use App\Http\Livewire\Idea\Index as IdeaIndex;
 use App\Http\Livewire\Budget\Index as BudgetIndex;
 use App\Http\Livewire\Todo\Index as TodoIndex;
+use App\Http\Livewire\Event\Index as EventIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/ideas', IdeaIndex::class)->name('idea.index');
         Route::get('/budget', BudgetIndex::class)->name('budget.index');
         Route::get('/planning', TodoIndex::class)->name('todo.index');
-        Route::get('/seating', WeddingShow::class)->name('seating.index');
+        Route::get('/the-big-day', EventIndex::class)->name('event.index');
     });
 });
 
