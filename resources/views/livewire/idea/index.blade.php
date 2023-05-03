@@ -17,6 +17,11 @@
                         <x-primary-button>
                             {{ __('Give me those ideas!') }}
                         </x-primary-button>
+                        @if(!$this->favorite && (count($this->favoriteIdeas) || count($this->ideaSearch)))
+                        <x-primary-button wire:click.prevent="getFavoriteIdeas">
+                            {{ __('Back') }}
+                        </x-primary-button>
+                        @endif
                     </div>
                 </form>
             </section>

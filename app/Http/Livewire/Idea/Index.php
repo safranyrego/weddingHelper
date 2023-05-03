@@ -63,6 +63,7 @@ class Index extends Component implements HasForms
 
     public function getFavoriteIdeas()
     {
+        $this->search = "";
         $this->favoriteIdeas = $this->wedding->ideas;
         if($this->favoriteIdeas && count($this->favoriteIdeas)){
             $this->favorite = true;

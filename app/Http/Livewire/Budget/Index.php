@@ -54,7 +54,7 @@ class Index extends Component implements HasTable
     {
         return [
             CreateAction::make('create')
-                ->label(__('Create Todo'))
+                ->label(__('Add Item'))
                 ->form([
                     TextInput::make('title')
                         ->required(),
@@ -63,6 +63,7 @@ class Index extends Component implements HasTable
                         ->integer()
                         ->minValue(0),
                 ])
+                ->modalHeading('Add Item')
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['budget_id'] = $this->wedding->budget->id;
                     return $data;

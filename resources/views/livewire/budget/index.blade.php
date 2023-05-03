@@ -39,13 +39,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-7 [&_.filament-tables-header-container>div:first-child]:hidden">
+                <div class="mt-7">
                     {{ $this->table }}
-                </div>
-                <div class="flex justify-center mt-6">
-                    <x-primary-button wire:click="mountTableAction('create')">
-                        {{ __('Add Item') }}
-                    </x-primary-button>
                 </div>
             </section>
         </div>
