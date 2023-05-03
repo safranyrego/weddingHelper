@@ -48,6 +48,7 @@ module.exports = {
     },
 
     safelist: [
+        'hidden',
         'sm:max-w-500',
         'md:max-w-992',
         'lg:max-w-1080',

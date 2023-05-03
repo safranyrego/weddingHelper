@@ -95,6 +95,11 @@ class Wedding extends Model
         return Todo::query()->where('wedding_id', $this->id);
     }
 
+    public function eventsQuery(): Builder
+    {
+        return Event::query()->where('wedding_id', $this->id);
+    }
+
     public function todoStatusGrouped()
     {
         $statuses = DB::table('todos')
