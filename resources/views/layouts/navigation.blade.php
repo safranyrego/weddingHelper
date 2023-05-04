@@ -84,6 +84,13 @@
                             </x-dropdown-link>
                         @endif
 
+                        <x-dropdown-link href="#" x-show="!darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
+                            {{ __('Dark mode') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="#" x-show="darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
+                            {{ __('Light mode') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

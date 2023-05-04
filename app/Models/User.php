@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -51,10 +50,5 @@ class User extends Authenticatable implements FilamentUser
     public function weddingsQuery(): Builder
     {
         return Wedding::query()->where('user_id', $this->id);
-    }
-
-    public function canAccessFilament(): bool
-    {
-        return true;
     }
 }
