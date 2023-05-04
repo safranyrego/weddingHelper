@@ -78,12 +78,6 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        @if(auth()->user()->canAccessFilament())
-                            <x-dropdown-link :href="route('filament.pages.dashboard')">
-                                {{ __('Administration') }}
-                            </x-dropdown-link>
-                        @endif
-
                         <x-dropdown-link href="#" x-show="!darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
                             {{ __('Dark mode') }}
                         </x-dropdown-link>
