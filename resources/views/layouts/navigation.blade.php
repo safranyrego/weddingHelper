@@ -85,6 +85,32 @@
                             {{ __('Light mode') }}
                         </x-dropdown-link>
 
+                        @if (app()->isLocale('en'))
+                        <form method="POST" action="{{ route('locale', ['locale' => 'hu']) }}">
+                            @csrf
+
+                            <x-dropdown-link 
+                                :href="route('locale', ['locale' => 'hu'])"
+                                onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                            >
+                                {{ __('Hungarian') }}
+                            </x-dropdown-link>
+                        </form>
+                        @else
+                        <form method="POST" action="{{ route('locale', ['locale' => 'en']) }}">
+                            @csrf
+
+                            <x-dropdown-link 
+                                :href="route('locale', ['locale' => 'en'])"
+                                onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                            >
+                                {{ __('English') }}
+                            </x-dropdown-link>
+                        </form>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
