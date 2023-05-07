@@ -51,7 +51,7 @@ class Index extends Component implements HasForms
     public function search()
     {
         if (!empty($this->search)) {
-            $response = json_decode(file_get_contents('https://api.unsplash.com//search/photos/?query=' . Str::slug($this->search) . '&per_page=20&client_id=zcq8N3EXKZW1fylcZzi_gknCVUP2bVWZPLPCk7bocwQ'));
+            $response = json_decode(file_get_contents('https://api.unsplash.com//search/photos/?query=' . Str::slug($this->search) . '&per_page=20&client_id='. config('unsplash.client_id'))); 
             if($response->results){
                 $this->ideaSearch = $response->results;
                 $this->favorite = false;
