@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Create Wedding') }}
+        {{ __('models.wedding.action.create') }}
     </h2>
 </x-slot>
 
@@ -10,11 +10,11 @@
             <section>
                 <header>
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                        {{ __('Wedding Details') }}
+                        {{ __('models.wedding.heading') }}
                     </h2>
             
                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                        {{ __("Provide your wedding's details.") }}
+                        {{ __("models.wedding.subheading") }}
                     </p>
                 </header>
 

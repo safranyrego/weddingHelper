@@ -34,6 +34,7 @@ class Index extends Component implements HasTable
     {
         return [
             TextColumn::make('title')
+                ->label(__('models.wedding.column.title'))
                 ->sortable(),
         ];
     }
@@ -42,7 +43,7 @@ class Index extends Component implements HasTable
     {
         return [
             CreateAction::make('create')
-                ->label(__('Create Wedding'))
+                ->label(__('models.wedding.action.create'))
                 ->url(route('wedding.create'))
         ];
     }
@@ -67,11 +68,12 @@ class Index extends Component implements HasTable
 
         $wedding->delete();
 
-        Notification::make() 
-            ->title('Deleted successfully')
+        Notification::make()
+            ->title(__('Deleted successfully'))
             ->success()
             ->actions([
                 Action::make('undo')
+                    ->title(__('models.wedding.action.undo'))
                     ->button()
                     ->color('secondary')
                     ->emit('undoDelete', [$wedding->id])
@@ -88,8 +90,8 @@ class Index extends Component implements HasTable
 
         $wedding->restore();
 
-        Notification::make() 
-            ->title('Restored successfully')
+        Notification::make()
+            ->title(__('models.wedding.action.restore.success'))
             ->success()
             ->send();
 

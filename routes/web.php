@@ -26,10 +26,10 @@ use App\Http\Livewire\Event\Index as EventIndex;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/locale/{locale}', [LocaleController::class, 'update'])->name('locale');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/locale/{locale}', [LocaleController::class, 'update'])->name('locale');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

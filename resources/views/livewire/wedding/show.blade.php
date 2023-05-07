@@ -22,19 +22,19 @@
                         </div>
                     @endif
                     <div class="flex flex-col">
-                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%d') ? $this->remaining()->format('%D') : '??' }}</p>
+                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%d') ? $this->remaining()->format('%D') : '00' }}</p>
                         <p class="text-center text-black dark:text-white">{{ __('Days(s)') }}</p>
                     </div>
                     <div class="flex flex-col">
-                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%h') ? $this->remaining()->format('%H') : '??' }}</p>
+                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%h') ? $this->remaining()->format('%H') : '00' }}</p>
                         <p class="text-center text-black dark:text-white">{{ __('Hour(s)') }}</p>
                     </div>
                     <div class="flex flex-col">
-                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%i') ? $this->remaining()->format('%I') : '??' }}</p>
+                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%i') ? $this->remaining()->format('%I') : '00' }}</p>
                         <p class="text-center text-black dark:text-white">{{ __('Minute(s)') }}</p>
                     </div>
                     <div class="flex flex-col">
-                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%s') ? $this->remaining()->format('%S') : '??' }}</p>
+                        <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%s') ? $this->remaining()->format('%S') : '00' }}</p>
                         <p class="text-center text-black dark:text-white">{{ __('Second(s)') }}</p>
                     </div>
                 </div>

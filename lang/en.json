@@ -1,0 +1,13 @@
+{
+    "Reset Password Notification": "Reset Password Notification",
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
+    "Reset Password": "Reset Password",
+    "This password reset link will expire in :count minutes.": "This password reset link will expire in :count minutes.",
+    "If you did not request a password reset, no further action is required.": "If you did not request a password reset, no further action is required.",
+    "Regards": "Regards",
+    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:",
+    "All rights reserved.": "All rights reserved.",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Hello! My name is Regő Sáfrány, and I am a computer science student. My topic was a web application to assist in wedding planning, and you are currently viewing the completed website. I hope you like my project! Feel free to register as a new user or log in with the username <strong>teszt@weddingtest.com</strong> and the password is <strong>password</strong>.": "Hello! My name is Regő Sáfrány, and I am a computer science student. My topic was a web application to assist in wedding planning, and you are currently viewing the completed website. I hope you like my project! Feel free to register as a new user or log in with the username <strong>teszt@weddingtest.com</strong> and the password is <strong>password</strong>."
+}

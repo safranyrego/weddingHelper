@@ -77,7 +77,7 @@ class Edit extends Component implements HasForms
         );
 
         Notification::make()
-            ->title('Saved successfully')
+            ->title(__('Saved successfully'))
             ->success()
             ->send(); 
 

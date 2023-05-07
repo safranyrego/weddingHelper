@@ -13,14 +13,14 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('navigation.dashboard') }}
                     </x-nav-link>
                     @if(request()->wedding_id)
                         <x-nav-link
                             :href="route('wedding.show', ['wedding_id' => request()->wedding_id])" 
                             :active="request()->routeIs('wedding.show')"
                         >
-                            {{ __('Overview') }}
+                            {{ __('navigation.overview') }}
                         </x-nav-link>
                     @endif
                     @if(request()->wedding_id)
@@ -28,7 +28,7 @@
                             :href="route('todo.index', ['wedding_id' => request()->wedding_id])" 
                             :active="request()->routeIs('todo.index')"
                         >
-                            {{ __('Planning') }}
+                            {{ __('navigation.planning') }}
                         </x-nav-link>
                     @endif
                     @if(request()->wedding_id)
@@ -36,7 +36,7 @@
                             :href="route('budget.index', ['wedding_id' => request()->wedding_id])" 
                             :active="request()->routeIs('budget.index')"
                         >
-                            {{ __('Budget') }}
+                            {{ __('navigation.budget') }}
                         </x-nav-link>
                     @endif
                     @if(request()->wedding_id)
@@ -44,7 +44,7 @@
                             :href="route('idea.index', ['wedding_id' => request()->wedding_id])" 
                             :active="request()->routeIs('idea.index')"
                         >
-                            {{ __('Ideas') }}
+                            {{ __('navigation.ideas') }}
                         </x-nav-link>
                     @endif
                     @if(request()->wedding_id)
@@ -52,7 +52,7 @@
                             :href="route('event.index',  ['wedding_id' => request()->wedding_id])" 
                             :active="request()->routeIs('event.index')"
                         >
-                            {{ __('The Big Day') }}
+                            {{ __('navigation.the_big_day') }}
                         </x-nav-link>
                     @endif
                 </div>
