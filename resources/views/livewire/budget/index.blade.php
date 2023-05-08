@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Budget') }}
+        {{ __('navigation.budget') }}
     </h2>
 </x-slot>
 
@@ -12,7 +12,7 @@
                     @if (!$this->editBudgetMode)
                     <div class="flex-1">
                         <h1 class="text-3xl text-center text-gray-700 dark:text-gray-300">
-                            {{ __('Budget:') }}
+                            {{ __('models.budget.subheader') }}
                         </h1>
                         <p class="text-6xl text-center text-gray-700 dark:text-gray-300" wire:click="toggleEditBudgetMode">
                             {{ prettyMoney($this->currentBudget) }}
@@ -32,7 +32,7 @@
                     @endif
                     <div class="flex-1">
                         <h1 class="text-3xl text-center text-gray-700 dark:text-gray-300">
-                            {{ __('Remaining Budget:') }}
+                            {{ __('models.budget.subheader2') }}
                         </h1>
                         <p class="text-6xl text-center text-gray-700 dark:text-gray-300">
                             {{ prettyMoney($this->wedding->remainingBudget) }}

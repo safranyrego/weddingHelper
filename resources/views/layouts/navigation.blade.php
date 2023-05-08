@@ -75,14 +75,14 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('navigation.profile') }}
                         </x-dropdown-link>
 
                         <x-dropdown-link href="#" x-show="!darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
-                            {{ __('Dark mode') }}
+                            {{ __('navigation.mode.dark') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="#" x-show="darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
-                            {{ __('Light mode') }}
+                            {{ __('navigation.mode.light') }}
                         </x-dropdown-link>
 
                         @if (app()->isLocale('en'))
@@ -94,7 +94,7 @@
                                 onclick="event.preventDefault();
                                     this.closest('form').submit();"
                             >
-                                {{ __('Hungarian') }}
+                                {{ __('navigation.locale.hu') }}
                             </x-dropdown-link>
                         </form>
                         @else
@@ -106,7 +106,7 @@
                                 onclick="event.preventDefault();
                                     this.closest('form').submit();"
                             >
-                                {{ __('English') }}
+                                {{ __('navigation.locale.en') }}
                             </x-dropdown-link>
                         </form>
                         @endif
@@ -118,7 +118,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('navigation.logout') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -141,8 +141,48 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('navigation.dashboard') }}
             </x-responsive-nav-link>
+            @if(request()->wedding_id)
+                <x-responsive-nav-link
+                    :href="route('wedding.show', ['wedding_id' => request()->wedding_id])" 
+                    :active="request()->routeIs('wedding.show')"
+                >
+                    {{ __('navigation.overview') }}
+                </x-responsive-nav-link>
+            @endif
+            @if(request()->wedding_id)
+                <x-responsive-nav-link
+                    :href="route('todo.index', ['wedding_id' => request()->wedding_id])" 
+                    :active="request()->routeIs('todo.index')"
+                >
+                    {{ __('navigation.planning') }}
+                </x-responsive-nav-link>
+            @endif
+            @if(request()->wedding_id)
+                <x-responsive-nav-link
+                    :href="route('budget.index', ['wedding_id' => request()->wedding_id])" 
+                    :active="request()->routeIs('budget.index')"
+                >
+                    {{ __('navigation.budget') }}
+                </x-responsive-nav-link>
+            @endif
+            @if(request()->wedding_id)
+                <x-responsive-nav-link
+                    :href="route('idea.index', ['wedding_id' => request()->wedding_id])" 
+                    :active="request()->routeIs('idea.index')"
+                >
+                    {{ __('navigation.ideas') }}
+                </x-responsive-nav-link>
+            @endif
+            @if(request()->wedding_id)
+                <x-responsive-nav-link
+                    :href="route('event.index',  ['wedding_id' => request()->wedding_id])" 
+                    :active="request()->routeIs('event.index')"
+                >
+                    {{ __('navigation.the_big_day') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -154,8 +194,41 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('navigation.profile') }}
                 </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="#" x-show="!darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
+                    {{ __('navigation.mode.dark') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="#" x-show="darkMode" x-on:click="close(); darkMode = !darkMode" onclick="event.preventDefault();">
+                    {{ __('navigation.mode.light') }}
+                </x-responsive-nav-link>
+
+                @if (app()->isLocale('en'))
+                <form method="POST" action="{{ route('locale', ['locale' => 'hu']) }}">
+                    @csrf
+
+                    <x-responsive-nav-link 
+                        :href="route('locale', ['locale' => 'hu'])"
+                        onclick="event.preventDefault();
+                            this.closest('form').submit();"
+                    >
+                        {{ __('navigation.locale.hu') }}
+                    </x-responsive-nav-link>
+                </form>
+                @else
+                <form method="POST" action="{{ route('locale', ['locale' => 'en']) }}">
+                    @csrf
+
+                    <x-responsive-nav-link 
+                        :href="route('locale', ['locale' => 'en'])"
+                        onclick="event.preventDefault();
+                            this.closest('form').submit();"
+                    >
+                        {{ __('navigation.locale.en') }}
+                    </x-responsive-nav-link>
+                </form>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
@@ -164,7 +237,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                            {{ __('navigation.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

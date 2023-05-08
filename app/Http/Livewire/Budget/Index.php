@@ -54,16 +54,18 @@ class Index extends Component implements HasTable
     {
         return [
             CreateAction::make('create')
-                ->label(__('Add Item'))
+                ->label(__('models.item.action.create'))
                 ->form([
                     TextInput::make('title')
+                        ->label(__('models.item.column.title'))
                         ->required(),
                     TextInput::make('value')
+                        ->label(__('models.item.column.value'))
                         ->required()
                         ->integer()
                         ->minValue(0),
                 ])
-                ->modalHeading('Add Item')
+                ->modalHeading(__('models.item.action.create'))
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['budget_id'] = $this->wedding->budget->id;
                     return $data;
@@ -75,9 +77,11 @@ class Index extends Component implements HasTable
     {
         return [
             TextColumn::make('title')
+                ->label(__('models.item.column.title'))
                 ->sortable()
                 ->searchable(),
             TextColumn::make('value')
+                ->label(__('models.item.column.value'))
                 ->sortable()
                 ->searchable(),
         ];
@@ -87,15 +91,19 @@ class Index extends Component implements HasTable
     {
         return [
             EditAction::make()
+                ->modalHeading(__('models.item.action.edit'))
                 ->form([
                     TextInput::make('title')
+                        ->label(__('models.item.column.title'))
                         ->required(),
                     TextInput::make('value')
+                        ->label(__('models.item.column.value'))
                         ->required()
                         ->integer()
                         ->minValue(0),
                 ]),
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->modalHeading(__('models.item.action.delete')),
         ];
     }
 

@@ -24,8 +24,8 @@ enum TodoStatuses: string
     {
         $values = [];
 
-        foreach (self::cases() as $case){
-            $values[$case->value] = ucfirst($case->value);
+        foreach (self::cases() as $case) {
+            $values[$case->value] = __("models.todo.status." . $case->value);
         }
 
         return $values;

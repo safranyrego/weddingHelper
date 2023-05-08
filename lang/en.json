@@ -7,7 +7,14 @@
     "Regards": "Regards",
     "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:",
     "All rights reserved.": "All rights reserved.",
+    "Edit": "Edit",
+    "Delete": "Delete",
     "Save": "Save",
     "Cancel": "Cancel",
+    "Undo": "Undo",
+    "Saved successfully": "Saved successfully",
+    "Deleted successfully": "Deleted successfully",
+    "Restored successfully": "Restored successfully",
     "Hello! My name is Regő Sáfrány, and I am a computer science student. My topic was a web application to assist in wedding planning, and you are currently viewing the completed website. I hope you like my project! Feel free to register as a new user or log in with the username <strong>test@weddinghelper.test</strong> and the password is <strong>password</strong>.": "Hello! My name is Regő Sáfrány, and I am a computer science student. My topic was a web application to assist in wedding planning, and you are currently viewing the completed website. I hope you like my project! Feel free to register as a new user or log in with the username <strong>test@weddinghelper.test</strong> and the password is <strong>password</strong>."
+
 }

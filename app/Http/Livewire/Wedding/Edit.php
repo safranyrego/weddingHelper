@@ -47,22 +47,25 @@ class Edit extends Component implements HasForms
     {
         return [
             TextInput::make('title')
+                ->label(__('models.wedding.column.title'))
                 ->required(),
             TextInput::make('final')
-                ->label('Date')
+                ->label(__('models.wedding.column.date'))
                 ->type('date')
                 ->reactive()
                 ->visible(!$this->not_sure),
             TextInput::make('planned_from')
+                ->label(__('models.wedding.column.planned_from'))
                 ->type('date')
                 ->reactive()
                 ->visible($this->not_sure),
             TextInput::make('planned_to')
+                ->label(__('models.wedding.column.planned_to'))
                 ->type('date')
                 ->reactive()
                 ->visible($this->not_sure),
             Toggle::make('not_sure')
-                ->label('Not sure about the exact date.')
+                ->label(__('models.wedding.not_sure'))
                 ->reactive(),
         ];
     }

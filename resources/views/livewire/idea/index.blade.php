@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Ideas') }}
+        {{ __('navigation.ideas') }}
     </h2>
 </x-slot>
 
@@ -10,12 +10,15 @@
             <section>
                 <form wire:submit.prevent="search" class="mt-6 space-y-6">
                     <h1 class="text-7xl text-center text-gray-700 dark:text-gray-300">
-                        {{ __('Search for ideas! 🧠🐱👌') }}
+                        {{ __('models.idea.heading') }}
                     </h1>
+                    <p class="text-2xl text-center text-gray-700 dark:text-gray-300">
+                        {{ __('models.idea.subheading') }}
+                    </p>
                     {{ $this->form }}
                     <div class="flex justify-center gap-4">
                         <x-primary-button>
-                            {{ __('Give me those ideas!') }}
+                            {{ __('models.idea.button') }}
                         </x-primary-button>
                         @if(!$this->favorite && (count($this->favoriteIdeas) || count($this->ideaSearch)))
                         <x-primary-button wire:click.prevent="getFavoriteIdeas">
@@ -27,8 +30,8 @@
             </section>
         </div>
         @if ($this->favorite)
-        <p class="text-4xl text-center text-gray-700 dark:text-gray-300">
-            {{ __('Your favorite ideas') }}
+        <p class="text-4xl text-center text-gray-700 dark:text-gray-300 mb-3">
+            {{ __('models.idea.favorite') }}
         </p>
         <div class="grid grid-cols-4 gap-1.5">
             @foreach ($this->favoriteIdeas as $idea)

@@ -41,8 +41,10 @@ class Index extends Component implements HasTable
     protected function getTableColumns(): array 
     {
         return [
-            TextColumn::make('title'),
-            TextColumn::make('starts_at'),
+            TextColumn::make('title')
+                ->label(__('models.event.column.title')),
+            TextColumn::make('starts_at')
+                ->label(__('models.event.column.starts_at')),
         ];
     }
 
@@ -52,17 +54,21 @@ class Index extends Component implements HasTable
             EditAction::make()
                 ->form([
                     TextInput::make('title')
+                        ->label(__('models.event.column.title'))
                         ->required()
                         ->maxLength(40),
                     TimePicker::make('starts_at')
+                        ->label(__('models.event.column.starts_at'))
                         ->required()
                         ->withoutSeconds(),
                 ])
+                ->modalHeading(__('models.event.action.edit'))
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['wedding_id'] = $this->wedding->id;
                     return $data;
                 }),
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->modalHeading(__('models.event.action.delete')),
         ];
     }
 
@@ -72,12 +78,15 @@ class Index extends Component implements HasTable
             CreateAction::make('create')
                 ->form([
                     TextInput::make('title')
+                        ->label(__('models.event.column.title'))
                         ->required()
                         ->maxLength(40),
                     TimePicker::make('starts_at')
+                        ->label(__('models.event.column.starts_at'))
                         ->required()
                         ->withoutSeconds(),
                 ])
+                ->modalHeading(__('models.event.action.create'))
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['wedding_id'] = $this->wedding->id;
                     return $data;

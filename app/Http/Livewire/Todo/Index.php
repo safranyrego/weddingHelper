@@ -49,15 +49,18 @@ class Index extends Component implements HasTable
     {
         return [
             CreateAction::make('create')
-                ->label(__('Create Todo'))
+                ->label(__('models.todo.action.create'))
                 ->form([
                     TextInput::make('title')
+                        ->label(__('models.todo.column.title'))
                         ->required(),
                     Select::make('status')
+                        ->label(__('models.todo.column.status'))
                         ->options(TodoStatuses::selectValues())
                         ->default(TodoStatuses::TODO->value)
-                        ->disablePlaceholderSelection(),
+                        ->disablePlaceholderSelection()
                 ])
+                ->modalHeading(__('models.todo.action.create'))
                 ->mutateFormDataUsing(function (array $data): array {
                     $data['wedding_id'] = $this->wedding_id;
                     return $data;
@@ -69,10 +72,12 @@ class Index extends Component implements HasTable
     {
         return [
             TextColumn::make('title')
+                ->label(__('models.todo.column.title'))
                 ->sortable()
                 ->searchable()
                 ->wrap(),
             BadgeColumn::make('status')
+                ->label(__('models.todo.column.status'))
                 ->colors([
                     'warning' => TodoStatuses::PENDING->value,
                     'success' => TodoStatuses::DONE->value,
@@ -80,7 +85,7 @@ class Index extends Component implements HasTable
                 ])
                 ->sortable()
                 ->searchable()
-                ->formatStateUsing(fn (string $state): string => ucfirst($state)),
+                ->formatStateUsing(fn (string $state): string => __("models.todo.status.$state")),
         ];
     }
 
@@ -96,9 +101,11 @@ class Index extends Component implements HasTable
                         ->default(TodoStatuses::TODO->value)
                         ->disablePlaceholderSelection(),
                 ])
+                ->modalHeading(__('models.todo.action.edit'))
                 ->label(false)
                 ->size('lg'),
             DeleteAction::make()
+                ->modalHeading(__('models.todo.action.delete'))
                 ->label(false)
                 ->size('lg'),
         ];

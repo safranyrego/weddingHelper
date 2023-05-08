@@ -9,6 +9,8 @@ return [
         'dark' => 'Dark mode',
         'light' => 'Light mode',
     ],
+    'profile' => 'Profile',
+    'logout' => 'Log out',
     'login' => 'Log in',
     'register' => 'Register',
     'dashboard' => 'Dashboard',

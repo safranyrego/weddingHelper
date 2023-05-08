@@ -23,7 +23,7 @@
                     @endif
                     <div class="flex flex-col">
                         <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%d') ? $this->remaining()->format('%D') : '00' }}</p>
-                        <p class="text-center text-black dark:text-white">{{ __('Days(s)') }}</p>
+                        <p class="text-center text-black dark:text-white">{{ __('Day(s)') }}</p>
                     </div>
                     <div class="flex flex-col">
                         <p class="text-7xl text-center text-black dark:text-white">{{ $this->remaining()->format('%h') ? $this->remaining()->format('%H') : '00' }}</p>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="text-3xl text-center text-black dark:text-white mt-7">
-                    {{ __('Until the BIG day!!! 🥳🍆🍑🎉') }}
+                    {{ __('models.wedding.overview.subheading') }}
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <section>
                 <header>
                     <h2 class="text-3xl font-medium text-gray-900 dark:text-gray-100 mb-3">
-                        {{ __('Planning Overview') }}
+                        {{ __('models.wedding.overview.planning') }}
                     </h2>
                 </header>
 
@@ -58,7 +58,7 @@
                     @foreach ($this->wedding->todoStatusGrouped() as $status => $count)
                     <x-filament::stats.card 
                         :label="$count"
-                        :description="ucfirst($status)"
+                        :description="__('models.todo.status.' . $status)"
                         tag="div"
                         class="filament-stats-overview-widget-card dark:!bg-gray-600 [&_>div>div:first-child]:text-6xl [&_>div>div:last-child]:text-3xl [&_>div>div:last-child]:!text-gray-200 [&_>div>div]:justify-center"
                     />
@@ -79,19 +79,19 @@
             <section>
                 <header>
                     <h2 class="text-3xl font-medium text-gray-900 dark:text-gray-100 mb-3">
-                        {{ __('Budget Overview') }}
+                        {{ __('models.wedding.overview.budget') }}
                     </h2>
                 </header>
 
                 <div class="grid grid-cols-2 gap-3">
                     <x-filament::stats.card 
-                        label="Budget"
+                        :label="__('models.budget.subheader')"
                         :description="prettyMoney($this->wedding->budget->value)"
                         tag="div"
                         class="filament-stats-overview-widget-card dark:!bg-gray-600 [&_>div>div:first-child]:text-3xl [&_>div>div:last-child]:text-6xl [&_>div>div:last-child]:!text-gray-200 [&_>div>div]:justify-center"
                     />
                     <x-filament::stats.card 
-                        label="Remaining Budget"
+                    :label="__('models.budget.subheader2')"
                         :description="prettyMoney($this->wedding->remainingBudget)"
                         tag="div"
                         class="filament-stats-overview-widget-card dark:!bg-gray-600 [&_>div>div:first-child]:text-3xl [&_>div>div:last-child]:text-6xl [&_>div>div:last-child]:!text-gray-200 [&_>div>div]:justify-center"
@@ -112,7 +112,7 @@
             <section>
                 <header>
                     <h2 class="text-3xl font-medium text-gray-900 dark:text-gray-100 mb-3">
-                        {{ __('Ideas Overview') }}
+                        {{ __('models.wedding.overview.ideas') }}
                     </h2>
                 </header>
 

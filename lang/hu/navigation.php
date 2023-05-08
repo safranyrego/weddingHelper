@@ -9,6 +9,8 @@ return [
         'dark' => 'Sötét mód',
         'light' => 'Világos mód',
     ],
+    'profile' => 'Profil',
+    'logout' => 'Kijelentkezés',
     'login' => 'Bejelentkezés',
     'register' => 'Regisztráció',
     'dashboard' => 'Dashboard',

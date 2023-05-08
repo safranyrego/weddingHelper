@@ -53,7 +53,8 @@ class Index extends Component implements HasTable
         return [
             EditAction::make()
                 ->url(fn (Wedding $record): string => route('wedding.edit', $record)),
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->modalHeading(__('models.wedding.action.delete')),
         ];
     }
 
