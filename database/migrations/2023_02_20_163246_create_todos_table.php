@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Wedding::class)->constrained();
+            $table->foreignIdFor(Wedding::class);
             $table->bigInteger('order')->nullable();
             $table->string('title');
             $table->enum('status', TodoStatuses::values());
