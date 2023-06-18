@@ -15,6 +15,7 @@ class Show extends Component
     public function mount(): void 
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->wedding->checkAccess();
         $this->ideas = $this->wedding->ideas->random(($this->wedding->ideas->count() >= 4 ? 4 : $this->wedding->ideas->count()));
     }
 

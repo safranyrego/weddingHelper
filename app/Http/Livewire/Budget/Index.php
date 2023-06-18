@@ -28,6 +28,7 @@ class Index extends Component implements HasTable
     public function mount(): void 
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->wedding->checkAccess();
         $this->currentBudget = $this->wedding->budget->value;
     }
 

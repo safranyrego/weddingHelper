@@ -30,6 +30,7 @@ class Index extends Component implements HasTable
     public function getEvents()
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->wedding->checkAccess();
         $this->events = $this->wedding->events->sortBy('starts_at');
     }
 

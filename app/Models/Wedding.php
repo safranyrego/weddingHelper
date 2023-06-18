@@ -124,4 +124,14 @@ class Wedding extends Model
     {
         return $this->ideas->inRandomOrder()->get();
     }
+
+    public function checkAccess(): bool
+    {
+        if (!($this->user_id === auth()->id())) {
+            abort(401);
+            return false;
+        };
+
+        return true;
+    }
 }

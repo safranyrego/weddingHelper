@@ -33,6 +33,7 @@ class Edit extends Component implements HasForms
     public function mount(): void 
     {
         $this->wedding = Wedding::findOrFail($this->wedding_id);
+        $this->wedding->checkAccess();
 
         $this->not_sure = $this->wedding->final ? false : true;
         $this->form->fill([
