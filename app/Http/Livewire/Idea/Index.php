@@ -99,7 +99,9 @@ class Index extends Component implements HasForms
 
         if (!$err) {
             $response = json_decode($response);
-            $language = $response->data->detections[0][0]->language;
+            if (property_exists($response, 'data')) {
+                $language = $response->data->detections[0][0]->language;
+            }
         }
 
         if ($language != 'en'){
