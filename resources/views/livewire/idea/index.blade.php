@@ -12,9 +12,6 @@
                     <h1 class="text-7xl text-center text-gray-700 dark:text-gray-300">
                         {{ __('models.idea.heading') }}
                     </h1>
-                    <p class="text-2xl text-center text-gray-700 dark:text-gray-300">
-                        {{ __('models.idea.subheading') }}
-                    </p>
                     {{ $this->form }}
                     <div class="flex justify-center gap-4">
                         <x-primary-button>

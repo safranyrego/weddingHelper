@@ -62,7 +62,6 @@ return [
     ],
     'idea' => [
         'heading' => 'Keress ötleteket!',
-        'subheading' => 'A kereső csak angolul elérhető.',
         'button' => 'Kérem az ötleteket!',
         'favorite' => 'A kedvenc ötleteid',
     ],

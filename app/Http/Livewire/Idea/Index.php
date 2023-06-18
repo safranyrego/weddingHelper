@@ -52,7 +52,7 @@ class Index extends Component implements HasForms
     public function search()
     {
         if (!empty($this->search)) {
-            $response = json_decode(file_get_contents('https://api.unsplash.com//search/photos/?query=' . Str::slug($this->search) . '&per_page=20&client_id='. config('unsplash.client_id'))); 
+            $response = json_decode(file_get_contents('https://api.unsplash.com//search/photos/?query=' . Str::slug($this->translateSearch($this->search)) . '&per_page=20&client_id='. config('unsplash.client_id'))); 
             if($response->results){
                 $this->ideaSearch = $response->results;
                 $this->favorite = false;
@@ -69,6 +69,71 @@ class Index extends Component implements HasForms
         if($this->favoriteIdeas && count($this->favoriteIdeas)){
             $this->favorite = true;
         }
+    }
+
+    public function translateSearch($search) {
+        $language = 'en';
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://google-translate1.p.rapidapi.com/language/translate/v2/detect",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "q=" . urlencode($search),
+            CURLOPT_HTTPHEADER => [
+                "Accept-Encoding: application/gzip",
+                "X-RapidAPI-Host: google-translate1.p.rapidapi.com",
+                "X-RapidAPI-Key: " . config('rapid_api.key'),
+                "content-type: application/x-www-form-urlencoded"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if (!$err) {
+            $response = json_decode($response);
+            $language = $response->data->detections[0][0]->language;
+        }
+
+        if ($language != 'en'){
+            $curl = curl_init();
+
+            curl_setopt_array($curl, [
+                CURLOPT_URL => "https://google-translate1.p.rapidapi.com/language/translate/v2",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "q=" . urlencode($search) . "&target=en&source=" . $language,
+                CURLOPT_HTTPHEADER => [
+                    "Accept-Encoding: application/gzip",
+                    "X-RapidAPI-Host: google-translate1.p.rapidapi.com",
+                    "X-RapidAPI-Key: " . config('rapid_api.key'),
+                    "content-type: application/x-www-form-urlencoded"
+                ],
+            ]);
+            
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            
+            curl_close($curl);
+            
+            if (!$err) {
+                $response = json_decode($response);
+                $search = $response->data->translations[0]->translatedText;
+            }
+        }
+
+        return $search;
     }
 
     public function render()

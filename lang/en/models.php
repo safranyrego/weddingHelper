@@ -62,7 +62,6 @@ return [
     ],
     'idea' => [
         'heading' => 'Search for ideas!',
-        'subheading' => '',
         'button' => 'Give me those ideas!',
         'favorite' => 'Your favorite ideas',
     ],
