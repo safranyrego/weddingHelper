@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'key' => '8c23fb6861mshb9de4a6a8671990p103f57jsnc0c9c0019f9e',
+    'key' => '761ed1f1f2msh8a928ad3e17f4c4p1edfd6jsnea9a41efff73',
 ];
